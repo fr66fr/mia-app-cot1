@@ -1,3 +1,4 @@
+
 import streamlit as st
 import datetime 
 
@@ -69,18 +70,3 @@ with col1:
 st.markdown(f"**Variazione 1W:** {data['w1']}")
 st.markdown(f"**Variazione 1M:** {data['m1']}")
 with col2:
-st.markdown(f"**Variazione 3M:** {data['m3']}")
-st.markdown(f"**COT Index (1Y):** {data['y1']}") 
-
-st.markdown("---") 
-
-### Box del sentiment
-
-if data["status"] == "success":
-st.success(data["sentiment"])
-elif data["status"] == "error":
-st.error(data["sentiment"])
-else:
-st.info(data["sentiment"]) 
-
-st.write(data["details"])
