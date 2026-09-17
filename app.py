@@ -1,15 +1,9 @@
-
-import streamlit as st
-import datetime 
-
-### Configurazione dell'interfaccia mobile
+import streamlit as st 
 
 st.set_page_config(page_title="COT Mobile Analyzer", layout="centered") 
 
 st.title("📊 COT Mobile Analyzer")
 st.caption("Mani Forti Momentum & Sentiment") 
-
-### Database dei dati simulato (aggiornato al 2026)
 
 cot_database = {
 "PALLADIUM (NYMEX)": {
@@ -54,19 +48,22 @@ cot_database = {
 }
 } 
 
-### Menu a tendina per lo smartphone
-
 selected = st.selectbox("Seleziona Mercato:", list(cot_database.keys()))
 data = cot_database[selected] 
 
 st.markdown("---") 
 
-### Visualizzazione metriche compatte stile smartphone
+st.write("### Posizione Netta Attuale")
+st.info(data["net_pos"]) 
 
-st.metric("Posizione Netta", data["net_pos"]) 
+st.write("### Variazioni Temporali")
+st.write("📆 **1 Settimana (1W):** " + data["w1"])
+st.write("📅 **1 Mese (1M):** " + data["m1"])
+st.write("📊 **3 Mesi (3M):** " + data["m3"])
+st.write("📈 **COT Index (1Y):** " + data["y1"]) 
 
-col1, col2 = st.columns(2)
-with col1:
-st.markdown(f"**Variazione 1W:** {data['w1']}")
-st.markdown(f"**Variazione 1M:** {data['m1']}")
-with col2:
+st.markdown("---") 
+
+st.write("### Analisi del Sentiment")
+st.warning(data["sentiment"])
+st.write(data["details"])
